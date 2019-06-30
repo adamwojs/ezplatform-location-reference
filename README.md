@@ -1,1 +1,1 @@
-# ezplatform-language-reference
+# ezplatform-location-reference
