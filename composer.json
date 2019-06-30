@@ -1,0 +1,36 @@
+{
+  "name": "adamwojs/ezplatform-location-reference",
+  "description": "eZ Platform Location Reference",
+  "license": "MIT",
+  "type": "ezplatform-bundle",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": "^7.3",
+    "ezsystems/ezpublish-kernel": "^8.0@dev"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.2",
+    "friendsofphp/php-cs-fixer": "~2.15.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "AdamWojs\\EzPlatformLocationReferenceBundle\\": "src/bundle/",
+      "AdamWojs\\EzPlatformLocationReference\\": "src/lib/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "AdamWojs\\EzPlatformLocationReferenceBundle\\Tests\\": "tests/bundle/",
+      "AdamWojs\\EzPlatformLocationReference\\Tests\\": "tests/lib/"
+    }
+  },
+  "scripts": {
+    "fix-cs": "@php ./vendor/bin/php-cs-fixer fix -v --show-progress=estimating"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  }
+}

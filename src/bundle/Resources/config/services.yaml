@@ -1,0 +1,15 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    AdamWojs\EzPlatformLocationReference\LocationReferenceResolver: ~
+
+    AdamWojs\EzPlatformLocationReference\LocationReferenceResolverInterface:
+        alias: AdamWojs\EzPlatformLocationReference\LocationReferenceResolver
+
+    AdamWojs\EzPlatformLocationReference\ConfigResolver\LocationConfigResolver: ~
+
+    AdamWojs\EzPlatformLocationReference\ConfigResolver\LocationConfigResolverInterface:
+        alias: AdamWojs\EzPlatformLocationReference\ConfigResolver\LocationConfigResolver
