@@ -4,6 +4,10 @@ services:
         autoconfigure: true
         public: false
 
+    AdamWojs\EzPlatformLocationReference\ExpressionLanguage\ExpressionLanguage: ~
+
+    AdamWojs\EzPlatformLocationReference\LimitedLocationService: ~
+
     AdamWojs\EzPlatformLocationReference\LocationReferenceResolver: ~
 
     AdamWojs\EzPlatformLocationReference\LocationReferenceResolverInterface:
