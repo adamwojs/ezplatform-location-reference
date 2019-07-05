@@ -23,8 +23,17 @@ final class LocationReferenceResolver implements LocationReferenceResolverInterf
 
     public function resolve(string $reference): Location
     {
+        if ($this->isLocationId($reference)) {
+            return $this->limitedLocationService->loadLocation((int)$reference);
+        }
+
         return $this->expressionLanguage->evaluate($reference, [
             '__location_service' => $this->limitedLocationService,
         ]);
+    }
+
+    private function isLocationId(string $reference): bool
+    {
+        return ctype_digit($reference);
     }
 }
