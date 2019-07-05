@@ -8,6 +8,11 @@ services:
 
     AdamWojs\EzPlatformLocationReference\LimitedLocationService: ~
 
+    AdamWojs\EzPlatformLocationReference\NamedReferences\NamedReferencesProvider: ~
+
+    AdamWojs\EzPlatformLocationReference\NamedReferences\NamedReferencesProviderInterface:
+        alias: AdamWojs\EzPlatformLocationReference\NamedReferences\NamedReferencesProvider
+
     AdamWojs\EzPlatformLocationReference\LocationReferenceResolver: ~
 
     AdamWojs\EzPlatformLocationReference\LocationReferenceResolverInterface:

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdamWojs\EzPlatformLocationReference;
 
 use AdamWojs\EzPlatformLocationReference\ExpressionLanguage\ExpressionLanguage;
+use AdamWojs\EzPlatformLocationReference\NamedReferences\NamedReferencesProviderInterface;
 use eZ\Publish\API\Repository\Values\Content\Location;
 
 final class LocationReferenceResolver implements LocationReferenceResolverInterface
@@ -12,12 +13,19 @@ final class LocationReferenceResolver implements LocationReferenceResolverInterf
     /** @var \eZ\Publish\API\Repository\LocationService */
     private $limitedLocationService;
 
+    /** @var \AdamWojs\EzPlatformLocationReference\NamedReferences\NamedReferencesProviderInterface */
+    private $namedReferencesProvider;
+
     /** @var \Symfony\Component\ExpressionLanguage\ExpressionLanguage */
     private $expressionLanguage;
 
-    public function __construct(LimitedLocationService $limitedLocationService, ExpressionLanguage $expressionLanguage)
+    public function __construct(
+        LimitedLocationService $limitedLocationService,
+        NamedReferencesProviderInterface $namedReferencesProvider,
+        ExpressionLanguage $expressionLanguage)
     {
         $this->limitedLocationService = $limitedLocationService;
+        $this->namedReferencesProvider = $namedReferencesProvider;
         $this->expressionLanguage = $expressionLanguage;
     }
 
@@ -29,6 +37,8 @@ final class LocationReferenceResolver implements LocationReferenceResolverInterf
 
         return $this->expressionLanguage->evaluate($reference, [
             '__location_service' => $this->limitedLocationService,
+            '__named_references' => $this->namedReferencesProvider->getNamedReferences(),
+            '__self' => $this,
         ]);
     }
 

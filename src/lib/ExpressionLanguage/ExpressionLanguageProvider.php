@@ -58,6 +58,15 @@ final class ExpressionLanguageProvider implements ExpressionFunctionProviderInte
                     return $variables['__location_service']->loadRootLocation();
                 }
             ),
+            new ExpressionFunction(
+                'named',
+                function (string $args): string {
+                    return sprintf('$__self->resolve($___named_references->getReference(%s))', $args);
+                },
+                function (array $variables, string $name): Location {
+                    return $variables['__self']->resolve($variables['__named_references']->getReference($name));
+                }
+            ),
         ];
     }
 }
