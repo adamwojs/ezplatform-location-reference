@@ -10,13 +10,13 @@ use eZ\Publish\API\Repository\Values\Content\Location;
 
 final class LocationReference
 {
-    /** @var \AdamWojs\EzPlatformLocationReference\LocationReferenceResolver */
+    /** @var \AdamWojs\EzPlatformLocationReference\LocationReferenceResolverInterface */
     private $resolver;
 
     /** @var string */
     private $reference;
 
-    public function __construct(LocationReferenceResolver $resolver, string $reference)
+    public function __construct(LocationReferenceResolverInterface $resolver, string $reference)
     {
         $this->reference = $reference;
         $this->resolver = $resolver;
