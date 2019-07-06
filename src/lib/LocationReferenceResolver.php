@@ -10,7 +10,7 @@ use eZ\Publish\API\Repository\Values\Content\Location;
 
 final class LocationReferenceResolver implements LocationReferenceResolverInterface
 {
-    /** @var \eZ\Publish\API\Repository\LocationService */
+    /** @var \AdamWojs\EzPlatformLocationReference\LimitedLocationService */
     private $limitedLocationService;
 
     /** @var \AdamWojs\EzPlatformLocationReference\NamedReferences\NamedReferencesProviderInterface */
