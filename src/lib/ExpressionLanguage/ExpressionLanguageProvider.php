@@ -34,10 +34,10 @@ final class ExpressionLanguageProvider implements ExpressionFunctionProviderInte
             new ExpressionFunction(
                 'path',
                 function (string $args): string {
-                    return sprintf('$__location_service->loadLocationByPath(%s)', $args);
+                    return sprintf('$__location_service->loadLocationByPathString(%s)', $args);
                 },
                 function (array $variables, string $path): Location {
-                    return $variables['__location_service']->loadLocationByPath($path);
+                    return $variables['__location_service']->loadLocationByPathString($path);
                 }
             ),
             new ExpressionFunction(
