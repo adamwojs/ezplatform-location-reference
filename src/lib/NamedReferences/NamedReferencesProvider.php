@@ -18,8 +18,9 @@ final class NamedReferencesProvider implements NamedReferencesProviderInterface
 
     public function getNamedReferences(): NamedReferencesCollection
     {
-        return new NamedReferencesCollection(
-            $this->configResolver->getParameter('location_references')
-        );
+        $references = $this->configResolver->getParameter('location_references');
+        $references['__root'] = $this->configResolver->getParameter('content.tree_root.location_id');
+
+        return new NamedReferencesCollection($references);
     }
 }

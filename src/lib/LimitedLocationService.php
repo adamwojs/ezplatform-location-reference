@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AdamWojs\EzPlatformLocationReference;
 
-use eZ\Publish\API\Repository\Exceptions\NotImplementedException;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\Location;
+use eZ\Publish\Core\MVC\ConfigResolverInterface;
 
 /**
  * Limited location service which offers only load methods.
@@ -18,9 +18,13 @@ final class LimitedLocationService
     /** @var \eZ\Publish\API\Repository\LocationService */
     private $locationService;
 
-    public function __construct(LocationService $locationService)
+    /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
+    private $configResolver;
+
+    public function __construct(LocationService $locationService, ConfigResolverInterface $configResolver)
     {
         $this->locationService = $locationService;
+        $this->configResolver = $configResolver;
     }
 
     public function loadLocation(int $locationId): Location
@@ -43,11 +47,6 @@ final class LimitedLocationService
     public function loadParentLocation(Location $location): Location
     {
         return $this->locationService->loadLocation($location->parentLocationId);
-    }
-
-    public function loadRootLocation(): Location
-    {
-        throw new NotImplementedException('Not implemented.');
     }
 
     /**

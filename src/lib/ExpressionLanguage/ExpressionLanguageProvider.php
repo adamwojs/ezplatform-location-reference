@@ -52,10 +52,10 @@ final class ExpressionLanguageProvider implements ExpressionFunctionProviderInte
             new ExpressionFunction(
                 'root',
                 function (string $args): string {
-                    return sprintf('$__location_service->loadRootLocation(%s)', $args);
+                    return '$__self->resolve($___named_references->getReference("__root"))';
                 },
                 function (array $variables): Location {
-                    return $variables['__location_service']->loadRootLocation();
+                    return $variables['__self']->resolve($variables['__named_references']->getReference('__root'));
                 }
             ),
             new ExpressionFunction(
