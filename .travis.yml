@@ -10,7 +10,6 @@ before_install:
 
 install:
     - composer install
-    - ./bin/phpunit install
 
 matrix:
     include:
@@ -27,5 +26,4 @@ matrix:
 
 cache:
     directories:
-        - $HOME/.composer/cache/files
-        - ./bin/.phpunit
+        - $HOME/.composer/cache
