@@ -1,7 +1,12 @@
 language: php
 
 before_install:
-    - composer self-update
+    # Disable XDebug for performance
+    - phpenv config-rm xdebug.ini
+    # Get latest composer build
+    - travis_retry composer selfupdate
+    # Avoid memory issues on composer install
+    - echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 
 install:
     - composer install
