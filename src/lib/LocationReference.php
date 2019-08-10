@@ -49,4 +49,9 @@ final class LocationReference
     {
         return $this->getLocation();
     }
+
+    public function __toString()
+    {
+        return $this->reference;
+    }
 }
