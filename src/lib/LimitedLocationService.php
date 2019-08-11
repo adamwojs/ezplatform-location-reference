@@ -18,13 +18,9 @@ final class LimitedLocationService
     /** @var \eZ\Publish\API\Repository\LocationService */
     private $locationService;
 
-    /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
-    private $configResolver;
-
-    public function __construct(LocationService $locationService, ConfigResolverInterface $configResolver)
+    public function __construct(LocationService $locationService)
     {
         $this->locationService = $locationService;
-        $this->configResolver = $configResolver;
     }
 
     public function loadLocation(int $locationId): Location
