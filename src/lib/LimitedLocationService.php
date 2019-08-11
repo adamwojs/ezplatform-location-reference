@@ -53,6 +53,8 @@ final class LimitedLocationService
      */
     private function extractIdFromPath(string $path): int
     {
-        return (int)array_key_last(explode('/', trim($path, '/')));
+        $ids = explode('/', trim($path, '/'));
+
+        return (int)end($ids);
     }
 }
