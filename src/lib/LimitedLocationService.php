@@ -6,7 +6,6 @@ namespace AdamWojs\EzPlatformLocationReference;
 
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\Location;
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
 
 /**
  * Limited location service which offers only load methods.
