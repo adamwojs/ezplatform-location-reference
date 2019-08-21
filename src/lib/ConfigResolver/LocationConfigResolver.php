@@ -27,9 +27,7 @@ final class LocationConfigResolver implements LocationConfigResolverInterface
 
     public function getLocation(string $name, ?string $namespace = null, ?string $scope = null): Location
     {
-        return $this->referenceResolver->resolve(
-            $this->configResolver->getParameter($name, $namespace, $scope)
-        );
+        return $this->referenceResolver->resolve($this->getReference($name, $namespace, $scope));
     }
 
     public function getLocationReference(
@@ -39,7 +37,17 @@ final class LocationConfigResolver implements LocationConfigResolverInterface
     ): LocationReference {
         return new LocationReference(
             $this->referenceResolver,
-            $this->configResolver->getParameter($name, $namespace, $scope)
+            $this->getReference($name, $namespace, $scope)
         );
+    }
+
+    private function getReference(string $name, ?string $namespace, ?string $scope)
+    {
+        $reference = $this->configResolver->getParameter($name, $namespace, $scope);
+        if (is_int($reference)) {
+            $reference = (string)$reference;
+        }
+
+        return $reference;
     }
 }

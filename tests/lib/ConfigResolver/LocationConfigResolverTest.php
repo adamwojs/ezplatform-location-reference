@@ -14,6 +14,7 @@ use PHPUnit\Framework\TestCase;
 final class LocationConfigResolverTest extends TestCase
 {
     private const EXAMPLE_REFERENCE = 'remote_id("babe4a915b1dd5d369e79adb9d6c0c6a")';
+    private const EXAMPLE_LOCATION_ID = 2;
     private const EXAMPLE_PARAMETER = ['tree_root', 'content', 'default'];
 
     /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface|\PHPUnit\Framework\MockObject\MockObject */
@@ -55,6 +56,25 @@ final class LocationConfigResolverTest extends TestCase
         ));
     }
 
+    public function testGetLocationAcceptLocationId(): void
+    {
+        $location = $this->createMock(Location::class);
+
+        $this->configResolver
+            ->method('getParameter')
+            ->with(...self::EXAMPLE_PARAMETER)
+            ->willReturn(self::EXAMPLE_LOCATION_ID);
+
+        $this->referenceResolver
+            ->method('resolve')
+            ->with((string) self::EXAMPLE_LOCATION_ID)
+            ->willReturn($location);
+
+        $this->assertEquals($location, $this->locationConfigResolver->getLocation(
+            ...self::EXAMPLE_PARAMETER
+        ));
+    }
+
     public function testGetLocationReference(): void
     {
         $this->configResolver
@@ -68,5 +88,20 @@ final class LocationConfigResolverTest extends TestCase
 
         $this->assertInstanceOf(LocationReference::class, $reference);
         $this->assertEquals(self::EXAMPLE_REFERENCE, (string)$reference);
+    }
+
+    public function testGetLocationReferenceAcceptLocationId(): void
+    {
+        $this->configResolver
+            ->method('getParameter')
+            ->with(...self::EXAMPLE_PARAMETER)
+            ->willReturn(self::EXAMPLE_LOCATION_ID);
+
+        $reference = $this->locationConfigResolver->getLocationReference(
+            ...self::EXAMPLE_PARAMETER
+        );
+
+        $this->assertInstanceOf(LocationReference::class, $reference);
+        $this->assertEquals((string)self::EXAMPLE_LOCATION_ID, (string)$reference);
     }
 }
